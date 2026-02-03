@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+  font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+}
+
+* {
+  @apply border-border;
+}
+
+.surface {
+  @apply bg-surface border border-border shadow-glow rounded-2xl;
+}
+
+.card-hover {
+  @apply transition duration-300 hover:shadow-glow hover:border-glow/40;
+}
+
+.text-muted {
+  @apply text-muted;
+}
+
+.link-glow {
+  @apply text-accent hover:text-white transition;
+}
+
+.skeleton {
+  @apply animate-pulse bg-surfaceMuted rounded-xl;
+}
