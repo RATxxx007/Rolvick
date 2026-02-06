@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 const locale = "ru" as const;
 
 type ContactPageProps = {
-  searchParams: Promise<{ partner?: string }>;
+  searchParams?: { partner?: string };
 };
 
-export default async function ContactPageRu({ searchParams }: ContactPageProps) {
+export default function ContactPageRu({ searchParams }: ContactPageProps) {
   const dictionary = getDictionary(locale);
-  const { partner } = await searchParams;
+  const partner = searchParams?.partner;
 
   return (
     <div className="space-y-8">
