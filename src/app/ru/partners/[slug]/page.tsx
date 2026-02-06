@@ -11,7 +11,7 @@ import { getDictionary } from "@/i18n";
 import { getCategoryLabel } from "@/lib/i18n-helpers";
 import { pickLocaleText } from "@/lib/filter-helpers";
 
-const locale = "en" as const;
+const locale = "ru" as const;
 
 type PartnerPageProps = {
   params: Promise<{ slug: string }>;
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PartnerPageProps): Promise<Me
 
   if (!partner) {
     return {
-      title: "Partner Not Found | Partner Portal",
+      title: "Партнер не найден | Partner Portal",
     };
   }
 
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PartnerPageProps): Promise<Me
   };
 }
 
-export default async function PartnerProfilePage({ params }: PartnerPageProps) {
+export default async function PartnerProfilePageRu({ params }: PartnerPageProps) {
   const { slug } = await params;
   const partner = getPartnerBySlug(slug);
 
@@ -46,7 +46,7 @@ export default async function PartnerProfilePage({ params }: PartnerPageProps) {
   }
 
   const dictionary = getDictionary(locale);
-  const contactHref = `/contact?partner=${encodeURIComponent(partner.companyName)}`;
+  const contactHref = `/ru/contact?partner=${encodeURIComponent(partner.companyName)}`;
 
   return (
     <div className="space-y-10">

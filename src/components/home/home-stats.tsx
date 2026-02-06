@@ -1,20 +1,27 @@
-const stats = [
-  { label: "Verified Partners", value: "4" },
-  { label: "Public Case Studies", value: "6" },
-  { label: "Regions Covered", value: "4" },
-  { label: "Core Service Domains", value: "10" },
-];
+import { getDictionary } from "@/i18n";
+import type { Locale } from "@/i18n/types";
 
-export function HomeStats() {
+const stats = [
+  { key: "verifiedPartners", value: "4" },
+  { key: "publicCases", value: "6" },
+  { key: "regions", value: "4" },
+  { key: "domains", value: "10" },
+] as const;
+
+export function HomeStats({ locale }: { locale: Locale }) {
+  const dictionary = getDictionary(locale);
+
   return (
     <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {stats.map((stat) => (
         <div
-          key={stat.label}
-          className="rounded-2xl border border-white/10 bg-[#11141a] p-5"
+          key={stat.key}
+          className="rounded-2xl border border-white/10 bg-surface-2 p-5"
         >
-          <p className="text-xs uppercase tracking-wide text-zinc-500">{stat.label}</p>
-          <p className="mt-2 font-heading text-3xl font-semibold text-zinc-100">
+          <p className="text-xs uppercase tracking-wide text-muted">
+            {dictionary.stats[stat.key]}
+          </p>
+          <p className="mt-2 font-heading text-3xl font-semibold text-white">
             {stat.value}
           </p>
         </div>

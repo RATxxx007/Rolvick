@@ -5,13 +5,13 @@ import { partners } from "@/data/partners";
 import { getDictionary } from "@/i18n";
 
 export const metadata: Metadata = {
-  title: "Partners | Partner Portal",
-  description: "Browse verified service partners by capability and region.",
+  title: "Партнеры | Partner Portal",
+  description: "Каталог проверенных партнеров и команд.",
 };
 
-const locale = "en" as const;
+const locale = "ru" as const;
 
-export default function PartnersPage() {
+export default function PartnersPageRu() {
   const dictionary = getDictionary(locale);
 
   return (
