@@ -1,93 +1,115 @@
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { prisma } from '@/lib/db';
-import { Badge } from '@/components/ui/badge';
-import { Card } from '@/components/ui/card';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ExternalLink } from "lucide-react";
 
-export default async function PartnerDetailPage({ params }: { params: { slug: string } }) {
-  const partner = await prisma.partnerProfile.findUnique({
-    where: { slug: params.slug, status: 'APPROVED' },
-    include: { packages: true, cases: true }
-  });
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { getPartnerBySlug, partners } from "@/data/partners";
+
+type PartnerPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export function generateStaticParams() {
+  return partners.map((partner) => ({ slug: partner.slug }));
+}
+
+export async function generateMetadata({ params }: PartnerPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const partner = getPartnerBySlug(slug);
+
+  if (!partner) {
+    return {
+      title: "Partner Not Found | Partner Portal",
+    };
+  }
+
+  return {
+    title: `${partner.companyName} | Partner Portal`,
+    description: partner.description,
+  };
+}
+
+export default async function PartnerProfilePage({ params }: PartnerPageProps) {
+  const { slug } = await params;
+  const partner = getPartnerBySlug(slug);
 
   if (!partner) {
     notFound();
   }
 
-  const publicCases = partner.cases.filter((item) => item.isPublic).slice(0, 3);
-
   return (
-    <div className="space-y-10">
-      <section className="surface p-8">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="space-y-3">
-            <div className="flex items-center gap-3">
-              <h1 className="text-3xl font-semibold">{partner.companyName}</h1>
-              {partner.isVerified && <Badge>Verified</Badge>}
-            </div>
-            <p className="text-muted">{partner.tagline}</p>
-            <p className="text-sm text-muted">{partner.description}</p>
-            <div className="flex flex-wrap gap-2">
-              {partner.tags.map((tag) => (
-                <Badge key={tag}>{tag}</Badge>
-              ))}
-            </div>
-            <div className="text-xs text-muted">
-              Regions: {partner.regions.join(', ')} · Languages: {partner.languages.join(', ')}
-            </div>
-          </div>
-          <div className="flex flex-col gap-3">
-            <Link
-              href={`/request?partner=${partner.slug}`}
-              className="rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-accent"
-            >
-              Request intro
-            </Link>
-            <Link className="text-xs text-muted" href={partner.websiteUrl}>
-              {partner.websiteUrl}
-            </Link>
-          </div>
+    <div className="space-y-8">
+      <section className="rounded-3xl border border-white/10 bg-[#11141a] p-8">
+        <p className="text-sm uppercase tracking-wide text-cyan-200">Partner Profile</p>
+        <h1 className="mt-3 font-heading text-4xl font-semibold">
+          {partner.companyName}
+        </h1>
+        <p className="mt-2 text-zinc-300">{partner.tagline}</p>
+        <p className="mt-5 max-w-3xl text-zinc-300">{partner.description}</p>
+
+        <div className="mt-6 flex flex-wrap gap-2">
+          {partner.categories.map((category) => (
+            <Badge key={category} variant="muted">
+              {category}
+            </Badge>
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <a href={partner.websiteUrl} target="_blank" rel="noreferrer">
+            <Button>
+              Visit Website <ExternalLink className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
+          <Link href="/contact">
+            <Button variant="secondary">Contact Team</Button>
+          </Link>
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-2">
+      <section className="grid gap-4 lg:grid-cols-3">
         <Card>
-          <h2 className="text-lg font-semibold">Packages</h2>
-          <div className="mt-4 space-y-4">
-            {partner.packages.slice(0, 3).map((pkg) => (
-              <div key={pkg.id} className="rounded-2xl border border-border p-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-semibold">{pkg.name}</h3>
-                  <span className="text-sm text-muted">From ${pkg.priceFromUsd}</span>
-                </div>
-                <p className="text-xs text-muted">Timeline: {pkg.timeline}</p>
-                <ul className="mt-2 list-disc pl-4 text-xs text-muted">
-                  {pkg.deliverables.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            {partner.packages.length === 0 && (
-              <p className="text-sm text-muted">No packages listed yet.</p>
-            )}
-          </div>
+          <CardTitle>Regions</CardTitle>
+          <CardDescription className="mt-3 text-zinc-300">
+            {partner.regions.join(" / ")}
+          </CardDescription>
         </Card>
         <Card>
-          <h2 className="text-lg font-semibold">Case studies</h2>
-          <div className="mt-4 space-y-4">
-            {publicCases.map((caseStudy) => (
-              <div key={caseStudy.id} className="rounded-2xl border border-border p-4">
-                <h3 className="font-semibold">{caseStudy.title}</h3>
-                <p className="text-xs text-muted">Industry: {caseStudy.industry}</p>
-                <p className="mt-2 text-xs text-muted">{caseStudy.outcomes}</p>
-              </div>
-            ))}
-            {publicCases.length === 0 && (
-              <p className="text-sm text-muted">No public case studies available.</p>
-            )}
-          </div>
+          <CardTitle>Languages</CardTitle>
+          <CardDescription className="mt-3 text-zinc-300">
+            {partner.languages.join(" / ")}
+          </CardDescription>
         </Card>
+        <Card>
+          <CardTitle>Tags</CardTitle>
+          <CardDescription className="mt-3 text-zinc-300">
+            {partner.tags.join(" / ")}
+          </CardDescription>
+        </Card>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading text-2xl font-semibold">Service Packages</h2>
+        <div className="grid gap-4 lg:grid-cols-3">
+          {partner.packages.map((item) => (
+            <Card key={item.name} className="flex flex-col gap-4">
+              <div>
+                <CardTitle>{item.name}</CardTitle>
+                <CardDescription className="mt-1 text-zinc-300">
+                  From ${item.priceFromUSD.toLocaleString()} • {item.timeline}
+                </CardDescription>
+              </div>
+              <ul className="space-y-2 text-sm text-zinc-300">
+                {item.deliverables.map((deliverable) => (
+                  <li key={deliverable}>• {deliverable}</li>
+                ))}
+              </ul>
+            </Card>
+          ))}
+        </div>
       </section>
     </div>
   );

@@ -1,32 +1,38 @@
-import * as React from 'react';
-import { cn } from '@/lib/utils';
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary' | 'secondary' | 'ghost';
-};
+import { cn } from "@/lib/utils";
 
-const variantStyles: Record<NonNullable<ButtonProps['variant']>, string> = {
-  primary:
-    'bg-white text-black hover:bg-accent focus-visible:ring-2 focus-visible:ring-glow',
-  secondary:
-    'bg-surfaceMuted text-foreground hover:bg-surface border border-border focus-visible:ring-2 focus-visible:ring-glow',
-  ghost: 'bg-transparent text-foreground hover:bg-surfaceMuted'
-};
-
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        className={cn(
-          'inline-flex items-center justify-center rounded-2xl px-5 py-2.5 text-sm font-semibold tracking-wide transition',
-          variantStyles[variant],
-          className
-        )}
-        {...props}
-      />
-    );
-  }
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-semibold transition-all disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/40",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-cyan-400/15 text-cyan-100 border border-cyan-400/40 hover:bg-cyan-400/25",
+        secondary: "bg-white/5 text-zinc-100 border border-white/15 hover:bg-white/10",
+        ghost: "text-zinc-200 hover:bg-white/10",
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-lg px-3",
+        lg: "h-11 rounded-xl px-6",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  },
 );
 
-Button.displayName = 'Button';
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants>;
+
+function Button({ className, variant, size, ...props }: ButtonProps) {
+  return (
+    <button className={cn(buttonVariants({ variant, size }), className)} {...props} />
+  );
+}
+
+export { Button, buttonVariants };
