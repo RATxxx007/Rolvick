@@ -7,9 +7,9 @@ type PageShellProps = {
 
 export function PageShell({ children }: PageShellProps) {
   return (
-    <div className="min-h-screen bg-[#0b0d10] text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <main className="mx-auto w-full max-w-6xl px-6 py-10 lg:px-8 lg:py-14">
+      <main className="mx-auto w-full max-w-6xl px-6 py-10 lg:px-8 lg:py-16">
         {children}
       </main>
       <SiteFooter />

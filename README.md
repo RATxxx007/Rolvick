@@ -1,31 +1,67 @@
-# Partner Portal (CoreBiz + B5)
+# Rolvick Partner Portal
 
-Static premium website built with Next.js App Router, TypeScript, TailwindCSS, shadcn-style UI primitives, and client-side filtering/validation.
+Static premium portal built with Next.js App Router, TypeScript, TailwindCSS, and client-side filtering. Optimized for GitHub Pages static export with bilingual EN/RU routes.
 
 ## Stack
 
 - Next.js (App Router) + TypeScript (`strict`)
 - TailwindCSS
-- shadcn-style components (`src/components/ui`)
+- shadcn-style UI primitives (`src/components/ui`)
 - `lucide-react`
-- `zod` for client-side contact form validation
+- `zod` for client-side contact validation
 - `pnpm`
 
 ## Routes
 
+EN:
+
 - `/` Home
-- `/partners` Partner directory with client-side search/filters
+- `/partners` Partner directory
 - `/partners/[slug]` Partner profile (SSG)
-- `/cases` Public case studies with client-side filters
-- `/contact` Client-only contact form with Zod validation
+- `/cases` Case studies
+- `/cases/[slug]` Case study detail (SSG)
+- `/contact` Static contact form
+
+RU:
+
+- `/ru` Home
+- `/ru/partners`
+- `/ru/partners/[slug]`
+- `/ru/cases`
+- `/ru/cases/[slug]`
+- `/ru/contact`
 
 ## Data Source
 
-Update typed content here:
+All data is typed and bilingual:
 
 - `/Users/user/Documents/Documents - User’s MacBook Pro/Projects/Codex/Portal_1/src/data/types.ts`
 - `/Users/user/Documents/Documents - User’s MacBook Pro/Projects/Codex/Portal_1/src/data/partners.ts`
 - `/Users/user/Documents/Documents - User’s MacBook Pro/Projects/Codex/Portal_1/src/data/cases.ts`
+
+UI dictionaries:
+
+- `/Users/user/Documents/Documents - User’s MacBook Pro/Projects/Codex/Portal_1/src/i18n/en.ts`
+- `/Users/user/Documents/Documents - User’s MacBook Pro/Projects/Codex/Portal_1/src/i18n/ru.ts`
+
+### Adding a partner (EN/RU)
+
+1. Add a new entry in `src/data/partners.ts` with bilingual `tagline`, `description`, `packages.name`, `packages.timeline`, `packages.deliverables`.
+2. Categories are stored as keys (see `CATEGORY_KEYS` in `src/data/types.ts`) and rendered via dictionaries.
+
+### Adding a case (EN/RU)
+
+1. Add a new entry in `src/data/cases.ts` with bilingual `title`, `summary`, `problem`, `approach`, `outcomes`, `timeline`.
+2. Industries are stored as keys (see `INDUSTRY_KEYS` in `src/data/types.ts`) and rendered via dictionaries.
+
+## RU Routing
+
+RU pages are real static routes under `/ru/*`. There is no middleware. Language switcher maps:
+
+- `/path` -> `/ru/path`
+- `/ru/path` -> `/path`
+
+GitHub Pages basePath is handled in `next.config.ts` via `BASE_PATH`, so `/ru/*` works under `/Rolvick/ru/*` without manual edits.
 
 ## Local Commands
 
@@ -33,51 +69,42 @@ Update typed content here:
 pnpm dev
 pnpm build
 pnpm preview
+pnpm check:static
 ```
 
-### Preview behavior
-
-`pnpm preview` serves static export from `./out` on `http://localhost:4173`.
-If `./out` does not exist, it exits with:
-
-`Run pnpm build first (it generates ./out).`
-
-### Preview with basePath build
+### Preview with basePath
 
 ```bash
 BASE_PATH="/repo-name" pnpm build
 pnpm preview
 ```
 
+## Static HTML Checks
+
+`pnpm check:static` validates that exported HTML already contains key partner/case strings:
+
+- `./out/partners/index.html` contains `B5 Research` and `CoreBiz`
+- `./out/cases/index.html` contains at least two case titles
+- `./out/ru/partners/index.html` contains RU headings
+- `./out/ru/cases/index.html` contains RU headings
+
+Script: `/Users/user/Documents/Documents - User’s MacBook Pro/Projects/Codex/Portal_1/scripts/assert-static.mjs`
+
 ## GitHub Pages Deployment
 
-Deployment is configured in:
+Workflow: `/Users/user/Documents/Documents - User’s MacBook Pro/Projects/Codex/Portal_1/.github/workflows/deploy.yml`
 
-- `/Users/user/Documents/Documents - User’s MacBook Pro/Projects/Codex/Portal_1/.github/workflows/deploy.yml`
+Enable:
 
-### Enable Pages
+1. `Settings` -> `Pages`
+2. Source: `GitHub Actions`
+3. Push to `main`
 
-1. Open repository `Settings` -> `Pages`.
-2. Set `Source` to `GitHub Actions`.
-3. Push to `main` (or trigger the workflow manually).
-
-### How basePath is handled
+### basePath
 
 The workflow computes `BASE_PATH` automatically:
 
 - repo name ends with `.github.io` -> `BASE_PATH=""`
 - otherwise -> `BASE_PATH="/<repo-name>"`
 
-No manual edits in `next.config.ts` are required.
-
-## Static Export Config
-
-`next.config.ts` includes:
-
-- `output: "export"`
-- `trailingSlash: true`
-- `images.unoptimized: true`
-- `basePath = process.env.BASE_PATH || ""`
-- `assetPrefix = basePath ? `${basePath}/` : ""`
-
-`public/.nojekyll` is included so GitHub Pages serves exported files correctly.
+No manual edits required.

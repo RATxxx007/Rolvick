@@ -13,9 +13,7 @@ if (!existsSync(outputDir)) {
 
 const port = 4173;
 const rawBasePath = process.env.BASE_PATH || "";
-const normalizedBasePath = rawBasePath
-  ? `/${rawBasePath.replace(/^\/+|\/+$/g, "")}`
-  : "";
+const normalizedBasePath = rawBasePath ? `/${rawBasePath.replace(/^\/+|\/+$/g, "")}` : "";
 
 const server = createServer((request, response) => {
   if (normalizedBasePath && request.url) {
