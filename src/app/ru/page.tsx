@@ -9,9 +9,9 @@ import { caseStudies } from "@/data/cases";
 import { partners } from "@/data/partners";
 import { getDictionary } from "@/i18n";
 
-const locale = "en" as const;
+const locale = "ru" as const;
 
-export default function HomePage() {
+export default function HomePageRu() {
   const dictionary = getDictionary(locale);
 
   return (
@@ -25,7 +25,7 @@ export default function HomePage() {
           <h2 className="font-heading text-2xl font-semibold text-white">
             {dictionary.featuredPartners}
           </h2>
-          <Link href="/partners">
+          <Link href="/ru/partners">
             <Button variant="secondary">{dictionary.hero.primaryCta}</Button>
           </Link>
         </div>
@@ -41,7 +41,7 @@ export default function HomePage() {
           <h2 className="font-heading text-2xl font-semibold text-white">
             {dictionary.recentCases}
           </h2>
-          <Link href="/cases">
+          <Link href="/ru/cases">
             <Button variant="secondary">{dictionary.hero.secondaryCta}</Button>
           </Link>
         </div>
@@ -52,11 +52,11 @@ export default function HomePage() {
               className="rounded-2xl border border-white/10 bg-surface-2 p-6"
             >
               <h3 className="font-heading text-lg font-semibold text-white">
-                {item.title.en}
+                {item.title.ru}
               </h3>
-              <p className="mt-2 text-sm text-muted">{item.summary.en}</p>
+              <p className="mt-2 text-sm text-muted">{item.summary.ru}</p>
               <p className="mt-4 text-xs uppercase tracking-wide text-muted">
-                {item.timeline.en}
+                {item.timeline.ru}
               </p>
             </article>
           ))}

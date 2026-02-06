@@ -5,13 +5,13 @@ import { publicCaseStudies } from "@/data/cases";
 import { getDictionary } from "@/i18n";
 
 export const metadata: Metadata = {
-  title: "Cases | Partner Portal",
-  description: "Review public delivery cases across the partner ecosystem.",
+  title: "Кейсы | Partner Portal",
+  description: "Публичные кейсы партнерской сети.",
 };
 
-const locale = "en" as const;
+const locale = "ru" as const;
 
-export default function CasesPage() {
+export default function CasesPageRu() {
   const dictionary = getDictionary(locale);
 
   return (

@@ -4,17 +4,17 @@ import { ContactForm } from "@/components/contact-form";
 import { getDictionary } from "@/i18n";
 
 export const metadata: Metadata = {
-  title: "Contact | Partner Portal",
-  description: "Share your goals and get matched with the right partner team.",
+  title: "Контакт | Partner Portal",
+  description: "Связаться с партнерской командой.",
 };
 
-const locale = "en" as const;
+const locale = "ru" as const;
 
 type ContactPageProps = {
   searchParams: Promise<{ partner?: string }>;
 };
 
-export default async function ContactPage({ searchParams }: ContactPageProps) {
+export default async function ContactPageRu({ searchParams }: ContactPageProps) {
   const dictionary = getDictionary(locale);
   const { partner } = await searchParams;
 

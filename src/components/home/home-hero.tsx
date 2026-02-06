@@ -1,27 +1,31 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { getDictionary } from "@/i18n";
+import type { Locale } from "@/i18n/types";
 
-export function HomeHero() {
+export function HomeHero({ locale }: { locale: Locale }) {
+  const dictionary = getDictionary(locale);
+  const base = locale === "ru" ? "/ru" : "";
+
   return (
-    <section className="rounded-3xl border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.12),_transparent_45%),linear-gradient(120deg,#151a22,#0f1218)] px-8 py-14">
-      <p className="mb-4 inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-100">
-        Premium Partner Network
+    <section className="rounded-3xl border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.14),_transparent_45%),linear-gradient(120deg,#11141a,#0f1218)] px-8 py-14">
+      <p className="mb-4 inline-flex rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs text-white">
+        {dictionary.hero.eyebrow}
       </p>
-      <h1 className="font-heading max-w-3xl text-4xl font-semibold leading-tight text-zinc-100 lg:text-5xl">
-        Partner Portal for strategic delivery across product, AI, security, and growth.
+      <h1 className="font-heading max-w-[18ch] text-4xl font-semibold leading-tight text-white md:text-5xl">
+        {dictionary.hero.title}
       </h1>
-      <p className="mt-5 max-w-2xl text-base text-zinc-300">
-        Curated teams from CoreBiz and B5 ecosystem, with transparent service packages and
-        public implementation outcomes.
+      <p className="mt-5 max-w-[65ch] text-[17px] text-muted">
+        {dictionary.hero.subtitle}
       </p>
       <div className="mt-8 flex flex-wrap gap-3">
-        <Link href="/partners">
-          <Button size="lg">Explore Partners</Button>
+        <Link href={`${base}/partners`}>
+          <Button size="lg">{dictionary.hero.primaryCta}</Button>
         </Link>
-        <Link href="/cases">
+        <Link href={`${base}/cases`}>
           <Button size="lg" variant="secondary">
-            Review Case Studies
+            {dictionary.hero.secondaryCta}
           </Button>
         </Link>
       </div>

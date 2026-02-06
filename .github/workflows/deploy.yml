@@ -53,6 +53,9 @@ jobs:
       - name: Build static export
         run: BASE_PATH="$BASE_PATH" pnpm build
 
+      - name: Check static HTML
+        run: pnpm check:static
+
       - name: Validate output
         run: |
           test -d out

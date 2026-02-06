@@ -1,42 +1,65 @@
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Clock } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { getPartnerBySlug } from "@/data/partners";
 import type { CaseStudy } from "@/data/types";
+import { getDictionary } from "@/i18n";
+import type { Locale } from "@/i18n/types";
+import { getCategoryLabel, getIndustryLabel } from "@/lib/i18n-helpers";
+import { pickLocaleText } from "@/lib/filter-helpers";
 
-type CaseCardProps = {
-  item: CaseStudy;
-};
-
-export function CaseCard({ item }: CaseCardProps) {
+export function CaseCard({ item, locale }: { item: CaseStudy; locale: Locale }) {
+  const dictionary = getDictionary(locale);
   const partner = getPartnerBySlug(item.partnerSlug);
+  const base = locale === "ru" ? "/ru" : "";
 
   return (
-    <Card className="flex h-full flex-col gap-4 transition-all hover:border-cyan-300/30 hover:shadow-[0_0_0_1px_rgba(34,211,238,0.18),0_24px_80px_rgba(0,0,0,0.42)]">
+    <Card className="flex h-full flex-col gap-4 transition-all hover:border-accent/40 hover:shadow-glow">
       <div className="flex items-center justify-between gap-3">
-        <CardTitle>{item.title}</CardTitle>
-        <Badge variant="muted">{item.industry}</Badge>
+        <CardTitle>{pickLocaleText(item.title, locale)}</CardTitle>
+        <Badge variant="muted">{getIndustryLabel(dictionary, item.industry)}</Badge>
       </div>
-      <CardDescription>{item.summary}</CardDescription>
+      <CardDescription>{pickLocaleText(item.summary, locale)}</CardDescription>
       <div className="flex flex-wrap gap-2">
-        {item.categories.map((category) => (
+        {item.categories.slice(0, 2).map((category) => (
           <Badge key={category} variant="muted">
-            {category}
+            {getCategoryLabel(dictionary, category)}
           </Badge>
         ))}
       </div>
-      <ul className="space-y-1 text-sm text-zinc-300">
-        {item.outcomes.map((outcome) => (
-          <li key={outcome} className="inline-flex items-start gap-2">
-            <ArrowRight className="mt-0.5 h-4 w-4 text-cyan-300" />
-            {outcome}
-          </li>
-        ))}
-      </ul>
-      <p className="mt-auto text-sm text-zinc-500">
-        Partner: {partner?.companyName ?? item.partnerSlug} • Duration: {item.duration}
-      </p>
+      <div className="space-y-3">
+        <div>
+          <p className="text-xs uppercase tracking-wide text-muted">
+            {dictionary.cases.card.outcome}
+          </p>
+          <p className="mt-1 text-sm text-foreground">
+            {pickLocaleText(item.outcomes[0], locale)}
+          </p>
+        </div>
+        <div>
+          <p className="text-xs uppercase tracking-wide text-muted">
+            {dictionary.cases.card.whatDone}
+          </p>
+          <p className="mt-1 text-sm text-muted">
+            {pickLocaleText(item.approach, locale)}
+          </p>
+        </div>
+      </div>
+      <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-4 text-sm text-muted">
+        <span className="inline-flex items-center gap-2">
+          <Clock className="h-4 w-4" /> {pickLocaleText(item.timeline, locale)}
+        </span>
+        <span>{partner?.companyName ?? item.partnerSlug}</span>
+      </div>
+      <Link
+        href={`${base}/cases/${item.slug}`}
+        className="inline-flex items-center gap-2 text-sm text-accent-strong"
+      >
+        <span>{dictionary.cases.card.readCase}</span>
+        <ArrowRight className="h-4 w-4" />
+      </Link>
     </Card>
   );
 }
