@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { BriefcaseBusiness, FolderKanban, Home, Mail } from "lucide-react";
 
 import { LanguageSwitch } from "@/components/language-switch";
+import { OwnerMark } from "@/components/owner-mark";
 import { getDictionary } from "@/i18n";
 import { getLocaleFromPath } from "@/lib/locale";
 import { cn } from "@/lib/utils";
@@ -24,12 +25,15 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
-        <Link
-          href={locale === "ru" ? "/ru" : "/"}
-          className="font-heading text-base font-semibold tracking-wide text-white"
-        >
-          Partner Portal
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href={locale === "ru" ? "/ru" : "/"}
+            className="font-heading text-base font-semibold tracking-wide text-white"
+          >
+            Partner Portal
+          </Link>
+          <OwnerMark name="Ушаков Никита" imagePath="/nikita-ushakov.jpg" />
+        </div>
         <nav className="hidden items-center gap-2 md:flex">
           {navItems.map((item) => {
             const Icon = item.icon;
