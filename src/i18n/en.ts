@@ -10,7 +10,7 @@ export const enDictionary: Dictionary = {
   },
   hero: {
     eyebrow: "Partner Network",
-    title: "Trusted delivery teams for complex product, AI, and security work.",
+    title: "High-trust teams for high-impact work.",
     subtitle:
       "A curated portal of CoreBiz and B5 partners with clear packages, verified outcomes, and global coverage.",
     curatedBy: "Primary contact",
