@@ -17,7 +17,9 @@ export default function PartnersPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="text-xs uppercase tracking-wide text-accent-strong">Directory</p>
+        <p className="text-xs uppercase tracking-wide text-accent-strong">
+          {dictionary.nav.partners}
+        </p>
         <h1 className="font-heading text-4xl font-semibold text-white">
           {dictionary.directory.title}
         </h1>

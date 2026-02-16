@@ -6,7 +6,7 @@ export const CATEGORY_KEYS = [
   "delivery_engineering",
   "ai_agents_llm",
   "llmops_mlops",
-  "devops_platform",
+  "devops_sre_platform",
   "security",
   "privacy_compliance",
   "legal",
@@ -25,6 +25,8 @@ export const INDUSTRY_KEYS = [
 export type CategoryKey = (typeof CATEGORY_KEYS)[number];
 export type IndustryKey = (typeof INDUSTRY_KEYS)[number];
 
+export type PartnerStatus = "verified" | "active" | "pilot";
+
 export type PackageOffer = {
   name: LocalizedString;
   priceFromUSD: number;
@@ -42,7 +44,7 @@ export type Partner = {
   languages: string[];
   categories: CategoryKey[];
   tags: LocalizedString[];
-  isVerified: boolean;
+  status: PartnerStatus;
   packages: PackageOffer[];
 };
 

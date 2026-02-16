@@ -13,6 +13,7 @@ import { pickLocaleText } from "@/lib/filter-helpers";
 export function PartnerCard({ partner, locale }: { partner: Partner; locale: Locale }) {
   const dictionary = getDictionary(locale);
   const base = locale === "ru" ? "/ru" : "";
+  const statusLabel = dictionary.statuses[partner.status] ?? partner.status;
   const categories = partner.categories.map((category) =>
     getCategoryLabel(dictionary, category),
   );
@@ -32,13 +33,12 @@ export function PartnerCard({ partner, locale }: { partner: Partner; locale: Loc
             {pickLocaleText(partner.tagline, locale)}
           </CardDescription>
         </div>
-        {partner.isVerified ? (
-          <Badge>
-            <CheckCircle2 className="h-3.5 w-3.5" /> {dictionary.misc.verified}
-          </Badge>
-        ) : (
-          <Badge variant="muted">{dictionary.misc.active}</Badge>
-        )}
+        <Badge variant={partner.status === "verified" ? "default" : "muted"}>
+          {partner.status === "verified" ? (
+            <CheckCircle2 className="h-3.5 w-3.5" />
+          ) : null}
+          {statusLabel}
+        </Badge>
       </div>
       <p className="text-sm text-muted">{pickLocaleText(partner.description, locale)}</p>
       <div className="flex flex-wrap gap-2">

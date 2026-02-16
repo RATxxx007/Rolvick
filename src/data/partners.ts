@@ -10,7 +10,7 @@ export const partners: Partner[] = [
     },
     description: {
       en: "B5 Research helps teams reduce launch risk with sharp discovery, structured stakeholder alignment, and evidence-based roadmaps.",
-      ru: "B5 Research снижает риск запуска благодаря discovery, согласованию стейкхолдеров и roadmap на основе данных.",
+      ru: "B5 Research снижает риск запуска благодаря первичному исследованию, согласованию стейкхолдеров и плану развития на основе данных.",
     },
     websiteUrl: "https://b5research.example",
     regions: ["EU", "UK"],
@@ -27,15 +27,15 @@ export const partners: Partner[] = [
       },
       {
         en: "Opportunity sizing",
-        ru: "Оценка объема",
+        ru: "Оценка потенциала",
       },
     ],
-    isVerified: true,
+    status: "verified",
     packages: [
       {
         name: {
           en: "Discovery Sprint",
-          ru: "Discovery-спринт",
+          ru: "Спринт исследования",
         },
         priceFromUSD: 9000,
         timeline: {
@@ -75,7 +75,7 @@ export const partners: Partner[] = [
     },
     description: {
       en: "CoreBiz delivers complex software initiatives end-to-end, from architecture to production operations, with deep expertise in AI and platform reliability.",
-      ru: "CoreBiz ведет сложные инженерные инициативы end-to-end: от архитектуры до продакшена, с экспертизой в AI и надежности платформы.",
+      ru: "CoreBiz ведет сложные инженерные инициативы полного цикла: от архитектуры до продакшена, с экспертизой в AI и надежности платформы.",
     },
     websiteUrl: "https://corebiz.example",
     regions: ["GE", "EU"],
@@ -86,16 +86,16 @@ export const partners: Partner[] = [
       { en: "Agentic workflows", ru: "Агентные процессы" },
       { en: "Cloud delivery", ru: "Поставка в облаке" },
     ],
-    isVerified: true,
+    status: "verified",
     packages: [
       {
-        name: { en: "Delivery Pod", ru: "Delivery Pod" },
+        name: { en: "Delivery Pod", ru: "Инженерная команда" },
         priceFromUSD: 18000,
         timeline: { en: "6 weeks", ru: "6 недель" },
         deliverables: [
           { en: "Sprint execution plan", ru: "План спринтов" },
           { en: "Production-ready feature set", ru: "Фичи для продакшена" },
-          { en: "Quality & observability baseline", ru: "Базовые метрики качества" },
+          { en: "Quality & observability baseline", ru: "База качества и наблюдаемости" },
         ],
       },
       {
@@ -109,13 +109,13 @@ export const partners: Partner[] = [
         ],
       },
       {
-        name: { en: "MLOps Acceleration", ru: "MLOps ускорение" },
+        name: { en: "MLOps Acceleration", ru: "Ускорение MLOps" },
         priceFromUSD: 26000,
         timeline: { en: "10 weeks", ru: "10 недель" },
         deliverables: [
           { en: "Model deployment workflow", ru: "Процесс деплоя" },
           { en: "CI/CD for ML assets", ru: "CI/CD для ML" },
-          { en: "Runbook and SLO pack", ru: "Runbook и SLO" },
+          { en: "Runbook and SLO pack", ru: "Регламенты и SLO" },
         ],
       },
     ],
@@ -138,18 +138,18 @@ export const partners: Partner[] = [
     tags: [
       { en: "ISO 27001", ru: "ISO 27001" },
       { en: "Threat modeling", ru: "Моделирование угроз" },
-      { en: "Security reviews", ru: "Security review" },
+      { en: "Security reviews", ru: "Проверки безопасности" },
     ],
-    isVerified: true,
+    status: "verified",
     packages: [
       {
-        name: { en: "Security Baseline", ru: "Security baseline" },
+        name: { en: "Security Baseline", ru: "Базовый контур безопасности" },
         priceFromUSD: 12000,
         timeline: { en: "4 weeks", ru: "4 недели" },
         deliverables: [
           { en: "Control gap assessment", ru: "Оценка пробелов" },
           { en: "Remediation plan", ru: "План устранения" },
-          { en: "Governance checklist", ru: "Checklist управления" },
+          { en: "Governance checklist", ru: "Чеклист процессов" },
         ],
       },
       {
@@ -169,7 +169,7 @@ export const partners: Partner[] = [
     companyName: "GrowthLab Partner",
     tagline: {
       en: "Go-to-market systems designed for measurable growth.",
-      ru: "Go-to-market системы для измеримого роста.",
+      ru: "Системы вывода на рынок для измеримого роста.",
     },
     description: {
       en: "GrowthLab Partner helps B2B teams build repeatable acquisition and activation engines using market positioning, messaging, and experiment-driven execution.",
@@ -181,13 +181,13 @@ export const partners: Partner[] = [
     categories: ["gtm_growth"],
     tags: [
       { en: "Positioning", ru: "Позиционирование" },
-      { en: "Demand generation", ru: "Demand generation" },
-      { en: "Sales enablement", ru: "Sales enablement" },
+      { en: "Demand generation", ru: "Генерация спроса" },
+      { en: "Sales enablement", ru: "Поддержка продаж" },
     ],
-    isVerified: false,
+    status: "active",
     packages: [
       {
-        name: { en: "GTM Blueprint", ru: "GTM blueprint" },
+        name: { en: "GTM Blueprint", ru: "План вывода на рынок" },
         priceFromUSD: 11000,
         timeline: { en: "4 weeks", ru: "4 недели" },
         deliverables: [
@@ -197,7 +197,7 @@ export const partners: Partner[] = [
         ],
       },
       {
-        name: { en: "Growth Execution", ru: "Growth execution" },
+        name: { en: "Growth Execution", ru: "Growth-реализация" },
         priceFromUSD: 16000,
         timeline: { en: "8 weeks", ru: "8 недель" },
         deliverables: [

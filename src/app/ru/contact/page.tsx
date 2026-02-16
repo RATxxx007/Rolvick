@@ -21,7 +21,9 @@ export default function ContactPageRu({ searchParams }: ContactPageProps) {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="text-xs uppercase tracking-wide text-accent-strong">Contact</p>
+        <p className="text-xs uppercase tracking-wide text-accent-strong">
+          {dictionary.nav.contact}
+        </p>
         <h1 className="font-heading text-4xl font-semibold text-white">
           {dictionary.contact.title}
         </h1>

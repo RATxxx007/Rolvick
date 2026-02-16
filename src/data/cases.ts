@@ -6,7 +6,7 @@ export const caseStudies: CaseStudy[] = [
     partnerSlug: "b5-research",
     title: {
       en: "EU Fintech Discovery Reset",
-      ru: "Discovery перезапуск для финтеха",
+      ru: "Перезапуск исследования для финтеха",
     },
     summary: {
       en: "Reframed a fintech onboarding product through customer interviews and journey diagnostics.",
@@ -15,25 +15,25 @@ export const caseStudies: CaseStudy[] = [
     industry: "fintech",
     categories: ["strategy_discovery"],
     tags: [
-      { en: "User research", ru: "User research" },
-      { en: "Roadmapping", ru: "Roadmapping" },
+      { en: "User research", ru: "Исследование пользователей" },
+      { en: "Roadmapping", ru: "Планирование дорожной карты" },
     ],
     problem: {
       en: "Onboarding drop-off was eroding activation and compliance teams lacked shared priorities.",
-      ru: "Падение в онбординге снижало активацию, а у product и compliance не было общих приоритетов.",
+      ru: "Падение в онбординге снижало активацию, а у продукта и комплаенса не было общих приоритетов.",
     },
     approach: {
       en: "Interviewed finance leads, mapped journeys, and aligned stakeholders around a focused roadmap.",
-      ru: "Провели интервью, описали customer journey и согласовали сфокусированный roadmap.",
+      ru: "Провели интервью, описали путь клиента и согласовали сфокусированную дорожную карту.",
     },
     outcomes: [
       {
         en: "Onboarding drop-off reduced by 28%",
-        ru: "Снижение drop-off на 28%",
+        ru: "Снижение оттока на 28%",
       },
       {
         en: "Roadmap aligned across product and compliance",
-        ru: "Roadmap согласован между продуктом и compliance",
+        ru: "Дорожная карта согласована между продуктом и комплаенсом",
       },
     ],
     timeline: { en: "5 weeks", ru: "5 недель" },
@@ -44,30 +44,30 @@ export const caseStudies: CaseStudy[] = [
     partnerSlug: "corebiz",
     title: {
       en: "SaaS Delivery Platform Upgrade",
-      ru: "Обновление delivery платформы для SaaS",
+      ru: "Обновление инженерной платформы для SaaS",
     },
     summary: {
       en: "Migrated a monolith into modular services with stronger observability and deployment controls.",
       ru: "Перевели монолит в модульные сервисы с сильной наблюдаемостью и контролем релизов.",
     },
     industry: "saas",
-    categories: ["delivery_engineering", "devops_platform"],
+    categories: ["delivery_engineering", "devops_sre_platform"],
     tags: [
-      { en: "Cloud migration", ru: "Cloud migration" },
-      { en: "Release engineering", ru: "Release engineering" },
+      { en: "Cloud migration", ru: "Миграция в облако" },
+      { en: "Release engineering", ru: "Инженерия релизов" },
     ],
     problem: {
       en: "Release cycles lagged behind enterprise demand and incidents were hard to trace.",
-      ru: "Циклы релизов отставали от спроса enterprise, а инциденты сложно диагностировались.",
+      ru: "Циклы релизов отставали от запросов корпоративных клиентов, а инциденты было сложно диагностировать.",
     },
     approach: {
       en: "Delivered a modular service split, added CI/CD gates, and unified telemetry.",
-      ru: "Сделали разбиение на сервисы, добавили CI/CD контроль и единый telemetry слой.",
+      ru: "Разбили систему на сервисы, добавили CI/CD контроль и единый слой телеметрии.",
     },
     outcomes: [
       {
         en: "Lead time cut from 5 days to 8 hours",
-        ru: "Lead time снизили с 5 дней до 8 часов",
+        ru: "Время поставки снизили с 5 дней до 8 часов",
       },
       {
         en: "Production incidents reduced by 41%",
@@ -91,8 +91,8 @@ export const caseStudies: CaseStudy[] = [
     industry: "ecommerce",
     categories: ["ai_agents_llm", "llmops_mlops"],
     tags: [
-      { en: "Agentic AI", ru: "Agentic AI" },
-      { en: "Evaluation", ru: "Evaluation" },
+      { en: "Agentic AI", ru: "Агентный AI" },
+      { en: "Evaluation", ru: "Оценка качества" },
     ],
     problem: {
       en: "Support queues grew while quality consistency dropped.",
@@ -100,7 +100,7 @@ export const caseStudies: CaseStudy[] = [
     },
     approach: {
       en: "Built an LLM routing layer, guardrails, and evaluation harness.",
-      ru: "Построили LLM маршрутизацию, guardrails и контуры оценки.",
+      ru: "Построили LLM маршрутизацию, защитные правила и контуры оценки качества.",
     },
     outcomes: [
       {
@@ -124,21 +124,21 @@ export const caseStudies: CaseStudy[] = [
     },
     summary: {
       en: "Established security controls, privacy workflows, and audit evidence for EU expansion.",
-      ru: "Встроили security контроль, privacy процессы и аудит для экспансии в ЕС.",
+      ru: "Встроили контроль безопасности, процессы приватности и аудит для экспансии в ЕС.",
     },
     industry: "healthtech",
     categories: ["security", "privacy_compliance"],
     tags: [
-      { en: "Risk management", ru: "Risk management" },
+      { en: "Risk management", ru: "Управление рисками" },
       { en: "GDPR", ru: "GDPR" },
     ],
     problem: {
       en: "Expansion required hardened security controls and repeatable audit readiness.",
-      ru: "Для экспансии требовались устойчивые security контуры и готовность к аудитам.",
+      ru: "Для экспансии требовались устойчивые контуры безопасности и повторяемая готовность к аудитам.",
     },
     approach: {
       en: "Built control baselines, privacy workflows, and incident readiness playbooks.",
-      ru: "Собрали базовые контуры, privacy процессы и playbook для инцидентов.",
+      ru: "Собрали базовые контуры, процессы приватности и план реагирования на инциденты.",
     },
     outcomes: [
       {
@@ -162,7 +162,7 @@ export const caseStudies: CaseStudy[] = [
     },
     summary: {
       en: "Built a repeatable outbound and content motion for a niche B2B analytics vendor.",
-      ru: "Построили повторяемую outbound и content-механику для B2B аналитики.",
+      ru: "Построили повторяемую аутбаунд и контент-механику для B2B аналитики.",
     },
     industry: "b2b_analytics",
     categories: ["gtm_growth"],
@@ -183,7 +183,7 @@ export const caseStudies: CaseStudy[] = [
         en: "Qualified pipeline grew 2.1x",
         ru: "Квалифицированный пайплайн вырос в 2,1 раза",
       },
-      { en: "Win-rate improved by 18%", ru: "Win-rate улучшился на 18%" },
+      { en: "Win-rate improved by 18%", ru: "Доля побед улучшилась на 18%" },
     ],
     timeline: { en: "10 weeks", ru: "10 недель" },
     isPublic: true,
@@ -197,21 +197,21 @@ export const caseStudies: CaseStudy[] = [
     },
     summary: {
       en: "Prepared legal templates, privacy controls, and launch guardrails for regulated markets.",
-      ru: "Подготовили юридические шаблоны, privacy контуры и guardrails для регулируемых рынков.",
+      ru: "Подготовили юридические шаблоны, контуры приватности и ограничения для регулируемых рынков.",
     },
     industry: "insurtech",
     categories: ["privacy_compliance", "legal"],
     tags: [
-      { en: "Policy", ru: "Policy" },
-      { en: "Regulatory readiness", ru: "Regulatory readiness" },
+      { en: "Policy", ru: "Политики" },
+      { en: "Regulatory readiness", ru: "Готовность к регуляторике" },
     ],
     problem: {
       en: "Regulatory launches required consistent legal templates and privacy alignment.",
-      ru: "Для запуска в регулируемых рынках требовались единые юридические шаблоны и privacy alignment.",
+      ru: "Для запуска в регулируемых рынках требовались единые юридические шаблоны и согласованная приватность.",
     },
     approach: {
       en: "Standardized templates, audit evidence, and compliance checkpoints.",
-      ru: "Стандартизировали шаблоны, доказательную базу и compliance checkpoints.",
+      ru: "Стандартизировали шаблоны, доказательную базу и контрольные точки комплаенса.",
     },
     outcomes: [
       { en: "Contract cycle shortened by 22%", ru: "Цикл контрактов сократили на 22%" },

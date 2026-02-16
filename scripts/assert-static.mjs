@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { execSync } from "node:child_process";
 import { resolve } from "node:path";
 
 const checks = [
@@ -12,11 +13,15 @@ const checks = [
   },
   {
     file: "out/ru/partners/index.html",
-    mustInclude: ["Каталог партнеров"],
+    mustInclude: ["Партнеры", "Проверено"],
   },
   {
     file: "out/ru/cases/index.html",
     mustInclude: ["Публичные кейсы"],
+  },
+  {
+    file: "out/ru/index.html",
+    mustNotInclude: ["Static delivery optimized", "Directory", "Outcomes"],
   },
 ];
 
@@ -34,12 +39,43 @@ for (const check of checks) {
     continue;
   }
 
-  for (const snippet of check.mustInclude) {
+  for (const snippet of check.mustInclude ?? []) {
     if (!content.includes(snippet)) {
       console.error(`Missing "${snippet}" in ${check.file}`);
       failed = true;
     }
   }
+
+  for (const snippet of check.mustNotInclude ?? []) {
+    if (content.includes(snippet)) {
+      console.error(`Forbidden "${snippet}" found in ${check.file}`);
+      failed = true;
+    }
+  }
+}
+
+// Scan all RU-exported HTML files for obvious EN section labels.
+try {
+  const ruHtmlList = execSync("find out/ru -name '*.html' -print", {
+    encoding: "utf8",
+  })
+    .trim()
+    .split("\n")
+    .filter(Boolean);
+
+  const forbidden = ["Directory", "Outcomes"];
+  for (const file of ruHtmlList) {
+    const html = readFileSync(resolve(process.cwd(), file), "utf8");
+    for (const snippet of forbidden) {
+      if (html.includes(snippet)) {
+        console.error(`Forbidden "${snippet}" found in ${file}`);
+        failed = true;
+      }
+    }
+  }
+} catch {
+  console.error("Failed to scan out/ru HTML files.");
+  failed = true;
 }
 
 if (failed) {
