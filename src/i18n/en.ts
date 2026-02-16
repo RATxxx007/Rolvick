@@ -13,7 +13,7 @@ export const enDictionary: Dictionary = {
     title: "Trusted delivery teams for complex product, AI, and security work.",
     subtitle:
       "A curated portal of CoreBiz and B5 partners with clear packages, verified outcomes, and global coverage.",
-    curatedBy: "Curated by",
+    curatedBy: "Primary contact",
     primaryCta: "Explore partners",
     secondaryCta: "View case studies",
   },

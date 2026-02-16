@@ -8,6 +8,7 @@ import { withBasePath } from "@/lib/base-path";
 export function HomeHero({ locale }: { locale: Locale }) {
   const dictionary = getDictionary(locale);
   const base = locale === "ru" ? "/ru" : "";
+  const ownerName = locale === "ru" ? "Никита Ушаков" : "Nick Ushakov";
 
   return (
     <section className="rounded-3xl border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.14),_transparent_45%),linear-gradient(120deg,#11141a,#0f1218)] px-8 py-14">
@@ -39,14 +40,14 @@ export function HomeHero({ locale }: { locale: Locale }) {
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b0d10]">
               <img
                 src={withBasePath("/nikita-ushakov.jpg")}
-                alt="Ушаков Никита"
-                className="h-40 w-40 object-cover object-[50%_35%] md:h-56 md:w-56"
+                alt={ownerName}
+                className="h-52 w-52 object-cover object-[50%_35%] md:h-72 md:w-72"
                 loading="eager"
               />
             </div>
             <div className="mt-4">
               <p className="text-xs text-muted">{dictionary.hero.curatedBy}</p>
-              <p className="mt-1 text-base font-medium text-white">Ушаков Никита</p>
+              <p className="mt-1 text-base font-medium text-white">{ownerName}</p>
             </div>
             <div className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 ring-1 ring-accent/30 transition-opacity group-hover:opacity-100" />
           </div>
