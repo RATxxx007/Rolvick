@@ -13,6 +13,7 @@ export const ruDictionary: Dictionary = {
     title: "Надежные команды для сложных продуктовых, AI и security задач.",
     subtitle:
       "Кураторский портал партнеров CoreBiz и B5 с понятными пакетами, подтвержденными результатами и глобальным охватом.",
+    curatedBy: "Куратор",
     primaryCta: "Партнеры",
     secondaryCta: "Кейсы",
   },

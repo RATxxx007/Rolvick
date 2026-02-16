@@ -17,6 +17,7 @@ export type Dictionary = {
     eyebrow: string;
     title: string;
     subtitle: string;
+    curatedBy: string;
     primaryCta: string;
     secondaryCta: string;
   };
