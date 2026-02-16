@@ -31,7 +31,7 @@ const initialValues: FormValues = {
 };
 
 const CONTACT_EMAIL = "contact@rolvick.example";
-const CONTACT_PHONE = "+1 212 555 0127";
+const CONTACT_PHONE = "+995 555 010 010";
 
 export function ContactForm({
   locale,

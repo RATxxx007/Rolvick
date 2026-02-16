@@ -99,9 +99,15 @@ export type Dictionary = {
   };
   categories: Record<string, string>;
   industries: Record<string, string>;
+  statuses: Record<string, string>;
+  footer: {
+    line1: string;
+    line2: string;
+  };
   misc: {
     verified: string;
     active: string;
+    pilot: string;
     more: string;
     from: string;
     viewProfile: string;

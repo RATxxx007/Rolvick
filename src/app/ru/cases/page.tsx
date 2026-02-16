@@ -17,7 +17,9 @@ export default function CasesPageRu() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="text-xs uppercase tracking-wide text-accent-strong">Outcomes</p>
+        <p className="text-xs uppercase tracking-wide text-accent-strong">
+          {dictionary.nav.cases}
+        </p>
         <h1 className="font-heading text-4xl font-semibold text-white">
           {dictionary.cases.title}
         </h1>

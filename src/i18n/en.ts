@@ -42,7 +42,7 @@ export const enDictionary: Dictionary = {
   featuredPartners: "Featured partners",
   recentCases: "Recent public cases",
   directory: {
-    title: "Partner catalog",
+    title: "Partners",
     subtitle:
       "Filter by capability, region, and language to find the right delivery partner.",
     filters: {
@@ -115,7 +115,7 @@ export const enDictionary: Dictionary = {
     delivery_engineering: "Delivery Engineering",
     ai_agents_llm: "AI Agents & LLM",
     llmops_mlops: "LLMOps / MLOps",
-    devops_platform: "DevOps / SRE / Platform",
+    devops_sre_platform: "DevOps / SRE / Platform",
     security: "Security",
     privacy_compliance: "Privacy / Compliance",
     legal: "Legal",
@@ -129,9 +129,19 @@ export const enDictionary: Dictionary = {
     b2b_analytics: "B2B Analytics",
     insurtech: "InsurTech",
   },
+  statuses: {
+    verified: "Verified",
+    active: "Active",
+    pilot: "Pilot",
+  },
+  footer: {
+    line1: "Partner Portal by CoreBiz + B5",
+    line2: "Static delivery optimized for GitHub Pages.",
+  },
   misc: {
     verified: "Verified",
-    active: "Active partner",
+    active: "Active",
+    pilot: "Pilot",
     more: "more",
     from: "From",
     viewProfile: "View profile",
